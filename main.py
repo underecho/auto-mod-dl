@@ -1,24 +1,27 @@
 import sys
 import time
 import os
-
+import subprocess
 import requests
-import tqdm
+from tqdm import tqdm
 
 
 # global
-download_dir = 'data/temp'
+download_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'mods')
 sleep_time_sec = 1
-
+"""
 def download(url_list, dir):
     for url in url_list:
         print(url)
-        response = requests.get(url, stream=True)
-        with open(url.split("/")[-1], "wb") as handle:
-            for data in tqdm(response.iter_content()):
-                handle.write(data)
+        if not os.path.isfile(os.path.join(dir, url.split("/")[-1])):
+            response = requests.get(url)
+            with open(os.path.join(dir, url.split("/")[-1].rstrip('\n')), "wb") as handle:
+                for data in tqdm(response.iter_content()):
+                    handle.write(data)
+        else:
+            print('skipped: ', url.split("/")[-1].rstrip('\n'))
         time.sleep(sleep_time_sec)
-
+"""
 def check_mc():
     temp_dir = os.path.join(os.environ['APPDATA'], '.minecraft')
     if os.path.exists(temp_dir):
@@ -38,5 +41,21 @@ if __name__ == "__main__":
         print("スクリプトがある場所にmodをダウンロードします。")
     else:
         download_dir = path
+        print(download_dir)
+    if not os.path.exists(download_dir):
+        os.makedirs(download_dir)
     
-    pass
+    url = "https://raw.githubusercontent.com/underecho/auto-mod-dl/main/data/pack.txt"
+    r = requests.get(url)
+    with open('pack.txt', 'wb') as f:
+        f.write(r.content)
+
+    result = subprocess.run('aria2c.exe', '-i pack.txt', '-d', download_dir, shell=True)
+    """
+    with open('pack.txt', 'r') as f:
+        x = f.readlines()
+        download(x, download_dir)
+    """
+    print("Done.")
+
+
