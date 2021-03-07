@@ -30,7 +30,7 @@ goto finish
 echo found minecraft. then try automatic install.
 timeout 5 >nul
 call download
-bitsadmin /transfer download https://raw.githubusercontent.com/underecho/auto-mod-dl/main/data/install.exe %CD%\install.exe
+aria2c https://raw.githubusercontent.com/underecho/auto-mod-dl/main/data/install.exe
 if not exist %APPDATA%\.minecraft\elek (
     mkdir %APPDATA%\.minecraft\elek
     if not exist %APPDATA%\.minecraft\elek\mods mkdir %APPDATA%\.minecraft\elek\mods
