@@ -24,3 +24,12 @@ https://media.forgecdn.net/files/2850/631/%5b1.12%5d%5bforge2413%5dmod_MineAllSM
 https://media.forgecdn.net/files/2740/439/%5b1.12%5d%5bforge2413%5dmod_PickupWidelySMP_v1.2.4.jar
 https://media.forgecdn.net/files/2740/435/%5b1.12%5d%5bforge2413%5dmod_CutAllSMP_v2.5.2.jar
 https://media.forgecdn.net/files/2564/573/IronBackpacks-1.12.2-3.0.8-12.jar
+https://media.forgecdn.net/files/2699/56/OpenBlocks-1.12.2-1.8.1.jar
+https://media.forgecdn.net/files/2699/55/OpenModsLib-1.12.2-0.12.2.jar
+https://media.forgecdn.net/files/2779/848/CodeChickenLib-1.12.2-3.2.3.358-universal.jar
+https://media.forgecdn.net/files/2835/177/MekanismGenerators-1.12.2-9.8.3.390.jar
+https://media.forgecdn.net/files/2755/787/EnderStorage-1.12.2-2.4.6.137-universal.jar
+https://media.forgecdn.net/files/2755/785/ChickenChunks-1.12.2-2.4.2.74-universal.jar
+https://media.forgecdn.net/files/2902/483/TConstruct-1.12.2-2.13.0.183.jar
+https://media.forgecdn.net/files/2934/706/plustic-8.0.1.0.jar
+https://media.forgecdn.net/files/2713/386/Mantle-1.12-1.3.3.55.jar
