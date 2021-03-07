@@ -26,8 +26,17 @@ timeout 5 >nul
 call :download
 goto finish
 
+:installForge
+echo trying install Forge...
+aria2c https://files.minecraftforge.net/maven/net/minecraftforge/forge/1.12.2-14.23.5.2854/forge-1.12.2-14.23.5.2854-installer.jar
+java -jar .\forge-1.12.2-14.23.5.2854-installer.jar
+del .\forge-1.12.2-14.23.5.2854-installer.jar
+exit /b
+
 :install
 echo found minecraft. then try automatic install.
+echo checking Forge files...
+if not exist %APPDATA%\.minecraft\versions\1.12.2-forge-14.23.5.2854\1.12.2-forge-14.23.5.2854.jar call installForge
 timeout 5 >nul
 call :download
 aria2c https://raw.githubusercontent.com/underecho/auto-mod-dl/main/data/install.exe
