@@ -1,5 +1,6 @@
 @echo off
 SETLOCAL ENABLEDELAYEDEXPANSION
+bitsadmin /cache /clear
 
 if "%1"=="boot" goto boot
 start update.bat 
@@ -9,30 +10,25 @@ exit
 echo "   _  _   _ _____ ___  "
 echo "  /_\| | | |_   _/ _ \ "
 echo " / _ \ |_| | | || (_) |"
-echo "/_/ \_\___/  |_| \___/ "
-echo                        
+echo "/_/ \_\___/  |_| \___/ "                   
 echo " __  __  ___  ___  "
 echo "|  \/  |/ _ \|   \ "
 echo "| |\/| | (_) | |) |"
-echo "|_|  |_|\___/|___/ "
-echo                    
+echo "|_|  |_|\___/|___/ "                 
 echo " ___ _  _ ___ _____ _   _     _    ___ ___ "
 echo "|_ _| \| / __|_   _/_\ | |   | |  | __| _ \"
 echo " | || .` \__ \ | |/ _ \| |__ | |__| _||   /"
 echo "|___|_|\_|___/ |_/_/ \_\____||____|___|_|_\"
 
-
-
-
 if exist %APPDATA%\.minecraft\launcher_profiles.json goto install
 echo hmm... couldn't find minecraft. then, perform download only.
-timeout 3 >nul
+timeout 5 >nul
 call download
 goto finish
 
 :install
 echo found minecraft. then try automatic install.
-timeout 3 >nul
+timeout 5 >nul
 call download
 bitsadmin /transfer download https://raw.githubusercontent.com/underecho/auto-mod-dl/main/data/install.exe %CD%\install.exe
 if not exist %APPDATA%\.minecraft\elek (
@@ -41,6 +37,7 @@ if not exist %APPDATA%\.minecraft\elek (
 )
 move /y .\mods %APPDATA%\.minecraft\elek\
 call install.exe %APPDATA%\.minecraft\launcher_profiles.json %APPDATA%\.minecraft\elek\
+goto finish
 
 
 :download
