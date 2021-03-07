@@ -1,5 +1,5 @@
 @echo off
-if %%1=="boot" goto boot
+if "%1"=="boot" goto boot
 start update.bat 
 exit
 
