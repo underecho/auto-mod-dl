@@ -36,7 +36,7 @@ exit /b
 :install
 echo found minecraft. then try automatic install.
 echo checking Forge files...
-if not exist %APPDATA%\.minecraft\versions\1.12.2-forge-14.23.5.2854\1.12.2-forge-14.23.5.2854.jar call installForge
+if not exist %APPDATA%\.minecraft\versions\1.12.2-forge-14.23.5.2854\1.12.2-forge-14.23.5.2854.jar call :installForge
 timeout 5 >nul
 call :download
 aria2c https://raw.githubusercontent.com/underecho/auto-mod-dl/main/data/install.exe
