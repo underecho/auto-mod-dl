@@ -1,6 +1,5 @@
 @echo off
 SETLOCAL ENABLEDELAYEDEXPANSION
-bitsadmin /cache /clear
 
 if "%1"=="boot" goto boot
 start update.bat 
@@ -42,7 +41,7 @@ goto finish
 
 :download
 echo download pack data
-bitsadmin /transfer download https://raw.githubusercontent.com/underecho/auto-mod-dl/main/data/pack.txt %CD%\pack.txt
+aria2c https://raw.githubusercontent.com/underecho/auto-mod-dl/main/data/pack.txt
 echo download mod data
 aria2c -i pack.txt -d ./mods
 echo Done.

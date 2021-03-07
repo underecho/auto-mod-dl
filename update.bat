@@ -1,4 +1,4 @@
 @echo off
-bitsadmin /transfer download https://raw.githubusercontent.com/underecho/auto-mod-dl/main/DL.bat %CD%\DL.bat
+aria2c https://raw.githubusercontent.com/underecho/auto-mod-dl/main/DL.bat
 start DL.bat boot
 exit
