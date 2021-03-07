@@ -1,6 +1,7 @@
 @echo off
 SETLOCAL ENABLEDELAYEDEXPANSION
 
+cd %~dp0
 if "%1"=="boot" goto boot
 start update.bat 
 exit
@@ -22,20 +23,21 @@ echo "|___|_|\_|___/ |_/_/ \_\____||____|___|_|_\"
 if exist %APPDATA%\.minecraft\launcher_profiles.json goto install
 echo hmm... couldn't find minecraft. then, perform download only.
 timeout 5 >nul
-call download
+call :download
 goto finish
 
 :install
 echo found minecraft. then try automatic install.
 timeout 5 >nul
-call download
+call :download
 aria2c https://raw.githubusercontent.com/underecho/auto-mod-dl/main/data/install.exe
 if not exist %APPDATA%\.minecraft\elek (
     mkdir %APPDATA%\.minecraft\elek
     if not exist %APPDATA%\.minecraft\elek\mods mkdir %APPDATA%\.minecraft\elek\mods
 )
-move /y .\mods %APPDATA%\.minecraft\elek\
+xcopy .\mods %APPDATA%\.minecraft\elek\mods /Y
 call install.exe %APPDATA%\.minecraft\launcher_profiles.json %APPDATA%\.minecraft\elek\
+rd /s /q .\mods
 goto finish
 
 
