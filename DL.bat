@@ -33,6 +33,15 @@ java -jar .\forge-1.19.2-43.2.14-installer.jar
 del .\forge-1.19.2-43.2.14-installer.jar
 exit /b
 
+:download
+echo download pack data
+aria2c https://raw.githubusercontent.com/underecho/auto-mod-dl/main/data/pack.txt
+echo download mod data
+aria2c -i pack.txt -d ./mods
+echo Done.
+timeout 3 >nul
+exit /b
+
 :install
 echo found minecraft. then try automatic install.
 echo checking Forge files...
@@ -49,23 +58,14 @@ xcopy .\mods %APPDATA%\.minecraft\baka\mods /Y
 call .\dist\dist\install.exe %APPDATA%\.minecraft\launcher_profiles.json %APPDATA%\.minecraft\baka\
 rd /s /q .\mods
 rd /s /q .\dist
-del .\dist.zip
 goto finish
 
-
-:download
-echo download pack data
-aria2c https://raw.githubusercontent.com/underecho/auto-mod-dl/main/data/pack.txt
-echo download mod data
-aria2c -i pack.txt -d ./mods
-echo Done.
-timeout 3 >nul
-exit /b
 
 :finish
 echo delete temp files...
 if exist .\pack.txt del .\pack.txt
-if exist .\install.exe del .\install.exe
+if exist .\dist.zip del .\dist.zip
 echo Done.
 
 pause
+exit
