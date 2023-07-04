@@ -1,5 +1,5 @@
 @echo off
-del .\DL.bat
+del .\launch.bat
 aria2c https://raw.githubusercontent.com/underecho/auto-mod-dl/main/DL.bat
-start DL.bat boot
+start launch.bat boot
 exit

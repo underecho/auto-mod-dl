@@ -3,7 +3,7 @@ SETLOCAL ENABLEDELAYEDEXPANSION
 
 cd %~dp0
 if "%1"=="boot" goto boot
-start update.bat 
+start u.bat 
 exit
 
 :boot
@@ -29,17 +29,14 @@ goto finish
 :installForge
 echo trying install Forge...
 aria2c https://maven.minecraftforge.net/net/minecraftforge/forge/1.19.2-43.2.14/forge-1.19.2-43.2.14-installer.jar
+echo install clientでそのままOK
+echo install clientでそのままOK
+echo install clientでそのままOK
+echo install clientでそのままOK
+echo install clientでそのままOK
+echo install clientでそのままOK
 java -jar .\forge-1.19.2-43.2.14-installer.jar
 del .\forge-1.19.2-43.2.14-installer.jar
-exit /b
-
-:download
-echo download pack data
-aria2c https://raw.githubusercontent.com/underecho/auto-mod-dl/main/data/pack.txt
-echo download mod data
-aria2c -i pack.txt -d ./mods
-echo Done.
-timeout 3 >nul
 exit /b
 
 :install
@@ -60,6 +57,14 @@ rd /s /q .\mods
 rd /s /q .\dist
 goto finish
 
+:download
+echo download pack data
+aria2c https://raw.githubusercontent.com/underecho/auto-mod-dl/main/data/pack.txt
+echo download mod data
+aria2c -i pack.txt -d ./mods
+echo Done.
+timeout 3 >nul
+exit /b
 
 :finish
 echo delete temp files...
@@ -68,4 +73,3 @@ if exist .\dist.zip del .\dist.zip
 echo Done.
 
 pause
-exit
