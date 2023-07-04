@@ -29,12 +29,6 @@ goto finish
 :installForge
 echo trying install Forge...
 aria2c https://maven.minecraftforge.net/net/minecraftforge/forge/1.19.2-43.2.14/forge-1.19.2-43.2.14-installer.jar
-echo install clientでそのままOK
-echo install clientでそのままOK
-echo install clientでそのままOK
-echo install clientでそのままOK
-echo install clientでそのままOK
-echo install clientでそのままOK
 java -jar .\forge-1.19.2-43.2.14-installer.jar
 del .\forge-1.19.2-43.2.14-installer.jar
 exit /b
