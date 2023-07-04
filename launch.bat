@@ -55,6 +55,7 @@ goto finish
 echo download pack data
 aria2c https://raw.githubusercontent.com/underecho/auto-mod-dl/main/data/pack.zip
 call powershell -command "Expand-Archive pack.zip"
+del .\pack.zip
 echo Done.
 timeout 3 >nul
 exit /b
