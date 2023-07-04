@@ -10,3 +10,6 @@ https://mediafilez.forgecdn.net/files/4571/452/ExtremeReactors2-1.19.2-2.0.64.ja
 https://mediafilez.forgecdn.net/files/3965/693/theoneprobe-1.19-6.2.2.jar
 https://mediafilez.forgecdn.net/files/4469/246/SolarFluxReborn-1.19.2-19.3.10.jar
 https://mediafilez.forgecdn.net/files/4382/729/CodeChickenLib-1.19.2-4.3.1.481-universal.jar
+https://mediafilez.forgecdn.net/files/4571/451/ZeroCore2-1.19.2-2.1.35.jar
+https://mediafilez.forgecdn.net/files/4484/497/titanium-1.19.2-3.7.3-27.jar
+https://mediafilez.forgecdn.net/files/4365/804/HammerLib-1.19.2-19.3.56.jar
