@@ -26,4 +26,3 @@ https://mediafilez.forgecdn.net/files/4532/924/journeymap-1.19.2-5.9.7-forge.jar
 https://mediafilez.forgecdn.net/files/4433/884/Jade-1.19.1-forge-8.8.1.jar
 https://mediafilez.forgecdn.net/files/3898/427/modnametooltip-1.19-1.19.0.jar
 https://mediafilez.forgecdn.net/files/3884/263/StorageDrawers-1.19-11.1.2.jar
-https://optifine.net/downloadx?f=OptiFine_1.19.2_HD_U_I2.jar&x=f78add1cae62b835207a4661a5ad19e1
