@@ -28,25 +28,28 @@ goto finish
 
 :installForge
 echo trying install Forge...
-aria2c https://files.minecraftforge.net/maven/net/minecraftforge/forge/1.12.2-14.23.5.2854/forge-1.12.2-14.23.5.2854-installer.jar
-java -jar .\forge-1.12.2-14.23.5.2854-installer.jar
-del .\forge-1.12.2-14.23.5.2854-installer.jar
+aria2c https://maven.minecraftforge.net/net/minecraftforge/forge/1.19.2-43.2.14/forge-1.19.2-43.2.14-installer.jar
+java -jar .\forge-1.19.2-43.2.14-installer.jar
+del .\forge-1.19.2-43.2.14-installer.jar
 exit /b
 
 :install
 echo found minecraft. then try automatic install.
 echo checking Forge files...
-if not exist %APPDATA%\.minecraft\versions\1.12.2-forge-14.23.5.2854\1.12.2-forge-14.23.5.2854.jar call :installForge
+if not exist %APPDATA%\.minecraft\versions\1.19.2-forge-43.2.14\1.19.2-forge-43.2.14.json call :installForge
 timeout 5 >nul
 call :download
-aria2c https://raw.githubusercontent.com/underecho/auto-mod-dl/main/data/install.exe
-if not exist %APPDATA%\.minecraft\elek (
-    mkdir %APPDATA%\.minecraft\elek
-    if not exist %APPDATA%\.minecraft\elek\mods mkdir %APPDATA%\.minecraft\elek\mods
+aria2c https://raw.githubusercontent.com/underecho/auto-mod-dl/main/data/dist.zip
+call powershell -command "Expand-Archive dist.zip"
+if not exist %APPDATA%\.minecraft\baka (
+    mkdir %APPDATA%\.minecraft\baka
+    if not exist %APPDATA%\.minecraft\baka\mods mkdir %APPDATA%\.minecraft\baka\mods
 )
-xcopy .\mods %APPDATA%\.minecraft\elek\mods /Y
-call install.exe %APPDATA%\.minecraft\launcher_profiles.json %APPDATA%\.minecraft\elek\
+xcopy .\mods %APPDATA%\.minecraft\baka\mods /Y
+call .\dist\dist\install.exe %APPDATA%\.minecraft\launcher_profiles.json %APPDATA%\.minecraft\baka\
 rd /s /q .\mods
+rd /s /q .\dist
+del .\dist.zip
 goto finish
 
 
