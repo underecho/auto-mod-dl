@@ -45,17 +45,16 @@ if not exist %APPDATA%\.minecraft\baka (
     mkdir %APPDATA%\.minecraft\baka
     if not exist %APPDATA%\.minecraft\baka\mods mkdir %APPDATA%\.minecraft\baka\mods
 )
-xcopy .\mods %APPDATA%\.minecraft\baka\mods /Y
+xcopy .\pack\mods %APPDATA%\.minecraft\baka\mods /Y
 call .\dist\dist\install.exe %APPDATA%\.minecraft\launcher_profiles.json %APPDATA%\.minecraft\baka\
-rd /s /q .\mods
+rd /s /q .\pack
 rd /s /q .\dist
 goto finish
 
 :download
 echo download pack data
-aria2c https://raw.githubusercontent.com/underecho/auto-mod-dl/main/data/pack.txt
-echo download mod data
-aria2c -i pack.txt -d ./mods
+aria2c https://raw.githubusercontent.com/underecho/auto-mod-dl/main/data/pack.zip
+call powershell -command "Expand-Archive pack.zip"
 echo Done.
 timeout 3 >nul
 exit /b
