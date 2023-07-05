@@ -26,18 +26,38 @@ timeout 5 >nul
 call :download
 goto finish
 
+rem Functions
+goto :endFunction
+
+:download
+echo download pack data
+aria2c https://raw.githubusercontent.com/underecho/auto-mod-dl/main/data/pack.zip
+call powershell -command "Expand-Archive pack.zip"
+del .\pack.zip
+echo Done.
+timeout 3 >nul
+exit /b
+
 :javaCheck
 call %JAVA_EXE% -version >NUL 2>NUL
 if not errorlevel 1 (
     echo found java at %JAVA_EXE%
     goto install
+    goto finish
 )
 exit /b
 
+:installForge
+echo trying install Forge...
+call "%~dp0aria2c.exe" https://maven.minecraftforge.net/net/minecraftforge/forge/1.19.2-43.2.14/forge-1.19.2-43.2.14-installer.jar
+call %JAVA_EXE% -jar "%~dp0forge-1.19.2-43.2.14-installer.jar"
+del "%~dp0forge-1.19.2-43.2.14-installer.jar"
+exit /b
+
+:endFunction
+
 :runJavaCheck
 echo java check
-
-timeout /t 5
 
 set JAVA_EXE="%ProgramFiles%..\Program Files (x86)\Minecraft Launcher\runtime\java-runtime-gamma\windows-x64\java-runtime-gamma\bin\java.exe"
 call :javaCheck
@@ -54,14 +74,6 @@ if not exist %JAVA_EXE% (
 call :installForge
 goto :install
 
-:installForge
-
-echo trying install Forge...
-call "%~dp0aria2c.exe" https://maven.minecraftforge.net/net/minecraftforge/forge/1.19.2-43.2.14/forge-1.19.2-43.2.14-installer.jar
-call %JAVA_EXE% -jar "%~dp0forge-1.19.2-43.2.14-installer.jar"
-del "%~dp0forge-1.19.2-43.2.14-installer.jar"
-exit /b
-
 :install
 echo found minecraft. then try automatic install.
 echo checking Forge files...
@@ -74,20 +86,13 @@ if not exist %APPDATA%\.minecraft\baka (
     mkdir %APPDATA%\.minecraft\baka
     if not exist %APPDATA%\.minecraft\baka\mods mkdir %APPDATA%\.minecraft\baka\mods
 )
-xcopy .\pack\mods %APPDATA%\.minecraft\baka\mods /Y
+robocopy .\pack\mods %APPDATA%\.minecraft\baka\mods /purge /mir
 call .\dist\dist\install.exe %APPDATA%\.minecraft\launcher_profiles.json %APPDATA%\.minecraft\baka\
 rd /s /q .\pack
 rd /s /q .\dist
 goto finish
 
-:download
-echo download pack data
-aria2c https://raw.githubusercontent.com/underecho/auto-mod-dl/main/data/pack.zip
-call powershell -command "Expand-Archive pack.zip"
-del .\pack.zip
-echo Done.
-timeout 3 >nul
-exit /b
+
 
 :finish
 echo delete temp files...
@@ -96,3 +101,4 @@ if exist .\dist.zip del .\dist.zip
 echo Done.
 
 pause
+exit
