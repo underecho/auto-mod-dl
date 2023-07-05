@@ -55,6 +55,7 @@ call :installForge
 goto :install
 
 :installForge
+
 echo trying install Forge...
 call "%~dp0aria2c.exe" https://maven.minecraftforge.net/net/minecraftforge/forge/1.19.2-43.2.14/forge-1.19.2-43.2.14-installer.jar
 call %JAVA_EXE% -jar "%~dp0forge-1.19.2-43.2.14-installer.jar"
