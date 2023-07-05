@@ -59,7 +59,7 @@ exit /b
 :runJavaCheck
 echo java check
 
-set JAVA_EXE="%ProgramFiles%..\Program Files (x86)\Minecraft Launcher\runtime\java-runtime-gamma\windows-x64\java-runtime-gamma\bin\java.exe"
+set JAVA_EXE="%ProgramFiles%\..\Program Files (x86)\Minecraft Launcher\runtime\java-runtime-gamma\windows-x64\java-runtime-gamma\bin\java.exe"
 call :javaCheck
 
 set JAVA_EXE="%LocalAppData%\Packages\Microsoft.4297127D64EC6_8wekyb3d8bbwe\LocalCache\Local\runtime\java-runtime-gamma\windows-x64\java-runtime-gamma\bin\java.exe"
