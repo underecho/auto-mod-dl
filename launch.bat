@@ -27,6 +27,13 @@ call :download
 goto finish
 
 :installForge
+echo java check
+call java --version >nul
+if not %errorlevel% == 0(
+    aria2c https://github.com/adoptium/temurin17-binaries/releases/download/jdk-17.0.7%2B7/OpenJDK17U-jdk_x64_windows_hotspot_17.0.7_7.msi
+    msiexec /i .\OpenJDK17U-jdk_x64_windows_hotspot_17.0.7_7.msi ADDLOCAL=FeatureMain,FeatureEnvironment,FeatureJarFileRunWith,FeatureJavaHome INSTALLDIR="c:\Program Files\Temurin\" /quiet
+    del .\OpenJDK17U-jdk_x64_windows_hotspot_17.0.7_7.msi
+)
 echo trying install Forge...
 aria2c https://maven.minecraftforge.net/net/minecraftforge/forge/1.19.2-43.2.14/forge-1.19.2-43.2.14-installer.jar
 java -jar .\forge-1.19.2-43.2.14-installer.jar
